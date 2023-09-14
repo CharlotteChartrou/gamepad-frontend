@@ -32,7 +32,7 @@ const handleToken = (token) => {
       <Header visble={visible} setVisible={setVisible} setVisible2={setVisible2} token={token} handleToken={handleToken}/>
       {visible && <Login setVisible={setVisible} setVisible2={setVisible2} handleToken={handleToken}/>}
       {visible2 && <Signup  setVisible={setVisible} setVisible2={setVisible2} handleToken={handleToken}/>}
-      {reviews && <Reviews  setReviews={setReviews} />}
+      {reviews && <Reviews  setReviews={setReviews} token={token}/>}
 <Routes>
 <Route path="/" element={<Home />} />
 <Route path="/games/:id" element={<Game setReviews={setReviews} setVisible={setVisible} token={token} /> } />
