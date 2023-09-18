@@ -7,9 +7,14 @@ import { useState } from "react";
 
 const Reviews =({setReviews, token}) => {
     const location = useLocation();
-/*     console.log("locaaaaatiiion", location.pathname) */
+    console.log("locaaaaatiiion", location) 
+const str = location.pathname;
+    const game_id = str.slice(7);
+    console.log(game_id)
   /*  */ /*  const id = location.pathname; */
  /*    console.log(id); */
+
+
     const [text, setText] = useState("");
     const [title, setTitle] = useState("");
    /*  const {pathname} = location.state;
@@ -27,20 +32,18 @@ const Reviews =({setReviews, token}) => {
             <form onSubmit= { async (event)=> {
                 console.log(text, title);
                 event.preventDefault();
-
-                const formData = new FormData();
-                formData.append("title", title);
-                formData.append("text", text);
-
+const data = {title, text, game_id};
+console.log(data);
                 const response = await axios.post(`http://localhost:3000${location.pathname}/reviews`,
-                formData, 
+                data,
                 {
                     headers: {
                       'Authorization': `Bearer ${token}`, 
-                      "Content-Type": "multipart/form-data",
+                   
                     }}
                 )
                 console.log(response.data);
+                setReviews(false);
             }}>
 <h3> Review title</h3>
 <input value={title} type="text" onChange={(event)=> { setTitle(event.target.value)}} />

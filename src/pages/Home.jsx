@@ -9,11 +9,12 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState();
     const [search, setSearch]= useState("");
+    const [ordering, setOrdering] = useState("");
     useEffect(() => {
       
         const fecthData = async () => {
           const response = await axios.get(
-            `http://localhost:3000/games?search=${search}`
+            `http://localhost:3000/games?search=${search}&ordering=${ordering}`
           );
     
           setData(response.data);
@@ -22,7 +23,7 @@ const Home = () => {
           setIsLoading(false);
         };
         fecthData();
-      }, [search]);
+      }, [search, ordering]);
 /*       console.log(data); */
     
       
@@ -40,10 +41,19 @@ const Home = () => {
                 setSearch(event.target.value)
              } } /> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#171719" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 </div>
-             <div>Search {data.count} games</div>
+{search === "" ? (<div>Search {data.count} games</div>) :(<div style={{display:"flex", flexDirection:"column", alignItems:"center"}}><div>Search result for "{search}"</div> <div>{data.count} games</div></div>)}
+             
 
   </div>   
-  <h2>Most Relevance Games</h2>
+  <div className="filter">
+    <h4 style={{backgroundColor: "red", padding:"5px"}}>FILTERS</h4>
+  <div onClick={()=> {setOrdering("-released")}}> relased date</div>
+  <div onClick={()=> {setOrdering("-name")}}>name</div>
+  <div onClick={()=> {setOrdering("-rating")}}>rating</div>
+  <div onClick={()=> {setOrdering("-created")}}>date of creation</div>
+  <div onClick={()=> {setOrdering("")}}>reset filters</div></div>
+  
+  {search === ""  && ordering === "" && <h2>Most Relevance Games</h2>}
   <div className="card"> 
  
           {data.results.map((games, index) => {
