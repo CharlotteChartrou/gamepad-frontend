@@ -1,8 +1,10 @@
 import image from "../assets/image.png"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Signup =({setVisible2, setVisible}) => {
+const Signup =({setVisible2, setVisible, handleToken}) => {
+    const navigate = useNavigate();
     const [email, setEmail] =useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -52,7 +54,12 @@ const Signup =({setVisible2, setVisible}) => {
       }
         )
 
-        console.log(response.data);} else { alert("password must be the same")}
+        console.log(response.data);
+        handleToken(response.data.token);
+        setVisible2(false);
+        navigate("/");
+    
+    } else { alert("password must be the same")}
     } catch (error) {console.log(error.response)}}
     }>
     <input type="text" value={username} placeholder="Username" onChange={(event)=> { setUsername(event.target.value)}}/>
