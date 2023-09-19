@@ -10,20 +10,22 @@ const Home = () => {
     const [data, setData] = useState();
     const [search, setSearch]= useState("");
     const [ordering, setOrdering] = useState("");
+    const [page, setPage] = useState("1");
+
     useEffect(() => {
       
         const fecthData = async () => {
           const response = await axios.get(
-            `http://localhost:3000/games?search=${search}&ordering=${ordering}`
+            `http://localhost:3000/games?search=${search}&ordering=${ordering}&page=${page}`
           );
     
-          setData(response.data);
-/*         console.log(response.data); */
+          setData(response.data);         
+        /*   console.log(response.data);  */
     
           setIsLoading(false);
         };
         fecthData();
-      }, [search, ordering]);
+      }, [search, ordering, page]);
 /*       console.log(data); */
     
       
@@ -46,22 +48,28 @@ const Home = () => {
 
   </div>   
   <div className="filter">
-    <h4 style={{backgroundColor: "red", padding:"5px"}}>FILTERS</h4>
+    <h4 style={{backgroundColor: "red", padding:"5px"}}>FILTERS BY</h4>
   <div onClick={()=> {setOrdering("-released")}}> relased date</div>
   <div onClick={()=> {setOrdering("-name")}}>name</div>
   <div onClick={()=> {setOrdering("-rating")}}>rating</div>
   <div onClick={()=> {setOrdering("-created")}}>date of creation</div>
   <div onClick={()=> {setOrdering("")}}>reset filters</div></div>
+
   
   {search === ""  && ordering === "" && <h2>Most Relevance Games</h2>}
   <div className="card"> 
  
           {data.results.map((games, index) => {
+        /*     console.log(games.platforms) */
         /*     console.log(games) */
             return (<div className="game" key={games.id} onClick={() => navigate(`/games/${games.id}`)} >
                 <div key={games.id}>{games.name}</div>
-            <img src={games.background_image} alt="games_photo" /></div>)
-          })}</div></div>) 
+            <img src={games.background_image} alt="games_photo" /></div>
+          
+            )
+          })}</div> 
+        <div className="pagination"> { page === 1 ? (<button disabled> Page précédente </button>) : ( <button onClick={()=> (setPage(Number(page)-1))}>Page précédente</button>)}  <span className="page-display"> {page}</span> <span>{Number(page)+1}</span>     {page === null ? (<button disable >Page suivante</button>) :(<button onClick={()=>{setPage(Number(page)+1)}}>Page suivante</button>) }</div> 
+          </div>) 
 }</>)
 };
 

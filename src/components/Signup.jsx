@@ -7,6 +7,13 @@ const Signup =({setVisible2, setVisible}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [file, setFile] = useState({});
+
+    const formData = new FormData();
+    formData.append("files", file);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("email", email);
 
     return ( 
 <div className="container">
@@ -26,15 +33,23 @@ const Signup =({setVisible2, setVisible}) => {
     <h2>Signup</h2>
     <form onSubmit={ async (event)=> {
            event.preventDefault();
+
+           const formData = new FormData();
+    formData.append("avatar", file);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("email", email);
+
            try {
 
             if (password === confirmPassword) { 
         const response = await axios.post("http://localhost:3000/signup",
-        {
-        username,
-        password,
-        email,
+       formData,
+       {
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
+      }
         )
 
         console.log(response.data);} else { alert("password must be the same")}
@@ -45,6 +60,12 @@ const Signup =({setVisible2, setVisible}) => {
     <div style={{display:"flex", gap:"3px"}}>
     <input  type="password" value={password} placeholder="Password" onChange={(event)=> {setPassword(event.target.value)}}/>
     <input type="password" value={confirmPassword} placeholder="Confirm Password" onChange={(event)=> {setConfirmPassword(event.target.value)}} /></div>
+    <input
+            type="file"
+            onChange={event => {
+              setFile(event.target.files[0]);
+            }}
+          />
     <button type="submit">Connexion</button>
     </form>
     <div onClick={()=> {setVisible2(false); setVisible(true)}} >Already have an account ? </div>

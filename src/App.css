@@ -86,19 +86,36 @@ header img {
   flex-wrap: wrap;
   gap: 15px;
   align-content: space-around;
-
   padding:65px;
-  
+}
+
+.pagination {
+  padding: 0 65px;
+  display: flex;
+  gap: 20px;
+}
+
+.page-display {
+  background-color: #FF4655;
+  border-radius: 2px;
+  padding: 4px;
+  height: 22px;
+}
+
+.pagination button {
+  background-color: none;
+  background-color: #171719;
+  text-decoration: none;
+  color: #FF4655;
+  border: none;
 }
 
 .game {
-
 width: 200px;
 height: 250px;
 }
 
 .game > div {
-
   width: 200px;
 }
 

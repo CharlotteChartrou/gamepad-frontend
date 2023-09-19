@@ -27,11 +27,14 @@ const Game = ({setReviews, setVisible, token}) => {
             const review = responses[1];
      
            setData(game.data); 
-   /*         console.log(review.data)  */
+          console.log(review.data)        
+          
            const newTab = review.data;
+    
+  
          /*   console.log("t aabt", newTab) */
            setAllReviews([newTab])
-          console.log("laaaaaaaaaaaaaaaaa",[allReviews]) 
+/*           console.log("laaaaaaaaaaaaaaaaa",[allReviews])  */
       
             setIsLoading(false);  } )
            )
@@ -97,14 +100,15 @@ const Game = ({setReviews, setVisible, token}) => {
 
 <div>  {allReviews.map((review, index) => {
   
-  return(<div className="review-section"> 
+  return(<div key={index} className="review-section"> 
 <h4>Reviews</h4>
 <div className="review-title">Most relevant review</div>
     {review.map((rev, index)=> {
 
-      console.log(rev.title);
+    /*   console.log(rev); */
       return (
-      <div className="bloc-reviews">
+
+      <div key={rev._id} className="bloc-reviews">
         
         <h5> {rev.title}</h5>
         <div> {rev.text}</div>
