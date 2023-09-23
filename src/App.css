@@ -30,7 +30,7 @@ header nav {
   flex-direction: row;
   align-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   width: 1200px;
 }
 
@@ -87,6 +87,7 @@ header img {
   gap: 15px;
   align-content: space-around;
   padding:65px;
+  
 }
 
 .pagination {
@@ -114,10 +115,25 @@ header img {
 .game {
 width: 200px;
 height: 250px;
+
+
+
 }
 
 .game > div {
-  width: 200px;
+  width: 196px;
+  height: 30px;
+  position: absolute;
+  margin-top: 215px;
+  margin-left: 2px;
+  text-shadow: 1px 1px 2px black, 10px 10px 30px #171719;
+
+}
+
+.save {
+  position: absolute;
+  margin-top: 7px;
+  margin-left: 165px;
 }
 
 .card img { 
@@ -125,10 +141,15 @@ width: 200px;
 height: 250px;
 object-fit: cover;
 border-radius: 5px;
+
+
 }
 
 .App{position: relative;}
 
+.border-review:first-of-type {
+  border: 2px yellow solid;
+}
 
 
 .modal-root {
@@ -137,7 +158,7 @@ border-radius: 5px;
   width: 1200px;
   display: flex;
   justify-content: center;
-
+z-index: 10;
   position: absolute;
   background-color: #171719;
 }
@@ -222,6 +243,8 @@ gap: 5px;
 
 .container h3 {
   color : #676767;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .review {
@@ -232,19 +255,20 @@ gap: 5px;
 .title-review {
   display: flex;
   flex-direction: row;
-  gap: 73%;
+  gap: 60%;
   background-color: #171719;
   margin-bottom: 5px;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .bloc-review {
-  padding: 15px;
-  background-color: #424448;
+padding: 15px;
+background-color: #424448;
 height : 290px;
 width: 650px;
 border-radius: 8px;
 }
+
 
 .bloc-review input {
   width: 100%;
@@ -280,9 +304,20 @@ height: 30px;
   background-color: #424448;
   width: 50%;
   border-radius: 8px;
+  display: flex;
+ flex-direction: column;
+gap:10px;
   height: 180px;
   width: 700px;
   padding: 15px;
+  
+}
+
+
+.reviews-row2 {
+  display: flex;
+  gap: 200px;
+  align-items: center;
 }
 
 .review-section {
@@ -295,6 +330,29 @@ height: 30px;
 .review-title {
   width: 700px;
   text-align: left;
+}
+
+.review-user {
+  width: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.review-user > div {
+  margin-left: 15px;
+}
+
+.thumb-butt {
+  padding-top: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+h5{
+  text-decoration: underline;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .filter {
@@ -311,7 +369,7 @@ height: 30px;
 } 
 
 
-/* ================> game page <====================== */
+/* =================================> GAME PAGE <=============================================== */
 
 .game-display, .button, .game-description {
   display: flex;
@@ -321,17 +379,28 @@ height: 30px;
   align-items: center;
 }
 
+.game-display {
+  height: 30%;
+
+}
+
 .game-display img {
   width: 100%;
+  max-height: 350px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
 h2 {
-  padding: 15px 20px;
+  padding-left: 20px;
+  padding-top: 30px;
   font-size: 30px;
   font-weight: 400;
 }
 
+.buttons {
+  margin: 10px;
+}
 
 .game-button {
   width: 100px;
@@ -349,12 +418,39 @@ h2 {
   width: 50%;
 }
 
-.about > div {
-  white-space: nowrap;
+.about {
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 40px;
-  width: 600px;
+  height: 110px;
+  width: fit-content;
   max-lines: 5;
-margin: 15px 20px;
+  margin: 15px 20px;
+  text-align: justify;
+}
+.game-div {
+width: 50%;
+height: 100%;
+}
+
+.reviews {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* ========================= FOOTER ================================ */
+
+footer {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+footer > div {
+  text-align: right;
+  width: 100%;
+  margin: 0 30px;
 }

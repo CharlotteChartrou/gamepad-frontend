@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import logo from "../assets/biglogo.png";
 import { useNavigate } from "react-router-dom";
+import img from "../assets/noimage.jpeg";
+import { BallTriangle } from "react-loader-spinner";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,7 +31,16 @@ const Home = () => {
   return (
     <>
       {isLoading ? (
-        <span>Chargement...</span>
+        <BallTriangle
+          height={150}
+          width="100%"
+          radius={5}
+          color="#FF4655"
+          ariaLabel="ball-triangle-loading"
+          wrapperClass={{}}
+          wrapperStyle=""
+          visible={true}
+        />
       ) : (
         <div className="container">
           <div className="search-container">
@@ -68,13 +79,29 @@ const Home = () => {
                   alignItems: "center",
                 }}
               >
-                <div>Search result for "{search}"</div>{" "}
+                <div>
+                  Search result for{" "}
+                  <span
+                    style={{
+                      textDecoration: "underline",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    "{search}"
+                  </span>
+                </div>{" "}
                 <div>{data.count} games</div>
               </div>
             )}
           </div>
           <div className="filter">
-            <h4 style={{ backgroundColor: "red", padding: "5px" }}>
+            <h4
+              style={{
+                backgroundColor: "#FF4655",
+                padding: "5px",
+                borderRadius: "5px",
+              }}
+            >
               FILTERS BY
             </h4>
             <div
@@ -107,8 +134,12 @@ const Home = () => {
               date of creation
             </div>
             <div
+              style={{
+                color: "#FF4655",
+              }}
               onClick={() => {
                 setOrdering("");
+                setSearch("");
               }}
             >
               reset filters
@@ -129,7 +160,11 @@ const Home = () => {
                   }
                 >
                   <div key={games.id}>{games.name}</div>
-                  <img src={games.background_image} alt="games_photo" />
+                  {games.background_image === null ? (
+                    <img src={img} />
+                  ) : (
+                    <img src={games.background_image} alt="games_photo" />
+                  )}
                 </div>
               );
             })}

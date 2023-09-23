@@ -88,10 +88,10 @@ const Login = ({ setVisible, handleToken, setVisible2 }) => {
                         password,
                       }
                     );
-                    console.log(response.data);
                     handleToken(response.data.token);
-                    console.log(response.data.token);
                     setVisible(false);
+                    window.location.reload();
+                    console.log(response.data);
                   } catch (error) {
                     console.log(error.response.data);
                   }

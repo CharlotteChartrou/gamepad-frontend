@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import MyCollection from "./pages/MyCollection";
 import Signup from "./components/Signup";
 import Reviews from "./components/reviews";
+import Footer from "./components/Footer";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -63,8 +64,9 @@ function App() {
             />
           }
         />
-        <Route path="/mycollection" element={<MyCollection />} />
+        <Route path="/mycollection" element={<MyCollection token={token} />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

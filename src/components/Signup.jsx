@@ -113,7 +113,8 @@ const Signup = ({ setVisible2, setVisible, handleToken }) => {
                       console.log(response.data);
                       handleToken(response.data.token);
                       setVisible2(false);
-                      navigate("/");
+
+                      window.location.reload();
                     } else {
                       alert("password must be the same");
                     }
@@ -156,12 +157,24 @@ const Signup = ({ setVisible2, setVisible, handleToken }) => {
                     }}
                   />
                 </div>
-                <input
-                  type="file"
-                  onChange={(event) => {
-                    setFile(event.target.files[0]);
-                  }}
-                />
+                <div>
+                  {/*          <label htmlFor="file" className="label-file">
+                    <span>+ Add your profile picture</span>
+                  </label> */}
+                  <input
+                    style={{
+                      color: "white",
+                      color: "white",
+                      backgroundColor: "grey",
+                      alignItems: "center",
+                      padding: "5px",
+                    }}
+                    type="file"
+                    onChange={(event) => {
+                      setFile(event.target.files[0]);
+                    }}
+                  />
+                </div>
                 <button type="submit">Connexion</button>
               </form>
               <div

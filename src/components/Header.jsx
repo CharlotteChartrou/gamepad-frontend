@@ -9,7 +9,6 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  console.log(token);
 
   useEffect(() => {
     const fecthData = async () => {
@@ -18,10 +17,9 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
 
       setData(response.data);
-      console.log(response.data);
+      /*       console.log(response.data); */
       setIsLoading(false);
     };
     if (token) {
@@ -48,10 +46,14 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                marginLeft: "57%",
                 gap: "20px",
               }}
             >
               <div
+                style={{
+                  width: "200px",
+                }}
                 onClick={() => {
                   token ? navigate("/mycollection") : setVisible(!visible);
                 }}
@@ -66,9 +68,11 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
                   style={{
                     color: "white",
                     textDecoration: "none",
+                    fontSize: "16px",
                     backgroundColor: "#FF4655",
                     borderRadius: "3px",
                     marginTop: "10px",
+                    fontFamily: "Exo",
                   }}
                 >
                   Login
@@ -96,6 +100,7 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
                   flexDirection: "row",
                   alignItems: "center",
                   gap: "20px",
+                  marginLeft: "57%",
                 }}
               >
                 <div
@@ -120,7 +125,7 @@ const Header = ({ visible, setVisible, token, handleToken, setVisible2 }) => {
                           height: "30px",
                           borderRadius: "50px",
                         }}
-                        src={data.avatar.secure_url}
+                        src={data.avatar}
                       />
                     ) : (
                       <img
